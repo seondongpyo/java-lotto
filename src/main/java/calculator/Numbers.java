@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
 public class Numbers {
 
 	private final List<Number> numbers;
@@ -16,8 +18,8 @@ public class Numbers {
 	public static Numbers from(String[] numberArray) {
 		List<Number> numbers = Arrays.stream(numberArray)
 								.map(Number::new)
-								.collect(Collectors.toList());
-		return new Numbers(Collections.unmodifiableList(numbers));
+								.collect(collectingAndThen(toList(), Collections::unmodifiableList));
+		return new Numbers(numbers);
 	}
 
 	public int sum() {

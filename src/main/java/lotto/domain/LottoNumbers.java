@@ -19,16 +19,6 @@ public class LottoNumbers {
 		this.numbers = numbers;
 	}
 
-	public static LottoNumbers from(List<Integer> numbers) {
-		return new LottoNumbers(numbers.stream()
-									.distinct()
-									.collect(collectingAndThen(toList(), Collections::unmodifiableList)));
-	}
-
-	public LottoTicket toLottoTicket() {
-		return LottoTicket.from(numbers);
-	}
-
 	private void validateLottoNumbers(List<Integer> lottoNumbers) {
 		if (hasInvalidSize(lottoNumbers)) {
 			throw new InvalidLottoNumberSizeException(lottoNumbers.size());
@@ -37,6 +27,16 @@ public class LottoNumbers {
 
 	private boolean hasInvalidSize(List<Integer> lottoNumbers) {
 		return lottoNumbers.size() != VALID_LOTTO_NUMBERS_COUNT;
+	}
+
+	public static LottoNumbers from(List<Integer> numbers) {
+		return new LottoNumbers(numbers.stream()
+									.distinct()
+									.collect(collectingAndThen(toList(), Collections::unmodifiableList)));
+	}
+
+	public LottoTicket toLottoTicket() {
+		return LottoTicket.from(numbers);
 	}
 
 	@Override

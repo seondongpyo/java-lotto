@@ -13,14 +13,6 @@ public class WinningLottoTicket {
 		this.bonusNumber = bonusNumber;
 	}
 
-	public static WinningLottoTicket from(LottoNumbers lottoNumbers, int bonusNumber) {
-		return new WinningLottoTicket(lottoNumbers.toLottoTicket(), new LottoNumber(bonusNumber));
-	}
-
-	public LottoPrize match(LottoTicket lottoTicket) {
-		return LottoPrize.from(lottoTicket.matchCount(winningTicket), lottoTicket.contains(bonusNumber));
-	}
-
 	private void validateBonusNumber(LottoTicket winningTicket, LottoNumber bonusNumber) {
 		if (isBonusNumberDuplicate(winningTicket, bonusNumber)) {
 			throw new InvalidBonusNumberException(winningTicket.getNumbers(), bonusNumber.getNumber());
@@ -29,5 +21,13 @@ public class WinningLottoTicket {
 
 	private boolean isBonusNumberDuplicate(LottoTicket winningTicket, LottoNumber bonusNumber) {
 		return winningTicket.contains(bonusNumber);
+	}
+
+	public static WinningLottoTicket from(LottoNumbers lottoNumbers, int bonusNumber) {
+		return new WinningLottoTicket(lottoNumbers.toLottoTicket(), new LottoNumber(bonusNumber));
+	}
+
+	public LottoPrize match(LottoTicket lottoTicket) {
+		return LottoPrize.from(lottoTicket.matchCount(winningTicket), lottoTicket.contains(bonusNumber));
 	}
 }

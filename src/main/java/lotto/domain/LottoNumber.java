@@ -16,10 +16,6 @@ public class LottoNumber {
 		this.number = number;
 	}
 
-	public int getNumber() {
-		return number;
-	}
-
 	private void validateNumber(int number) {
 		if (isInvalid(number)) {
 			throw new InvalidLottoNumberException(number);
@@ -28,6 +24,10 @@ public class LottoNumber {
 
 	private boolean isInvalid(int number) {
 		return number < START_NUMBER || number > LAST_NUMBER;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 
 	@Override

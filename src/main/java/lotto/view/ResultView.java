@@ -44,6 +44,28 @@ public class ResultView {
 			.forEach(lottoPrize -> printLottoPrizePerRank(totalLottoPrizes.prizesOf(lottoPrize), lottoPrize));
 	}
 
+	private static void printLottoPrizePerRank(LottoPrizes winningPrizes, LottoPrize lottoPrize) {
+		printMatchCount(lottoPrize);
+		printPrizeMoney(lottoPrize);
+		printWinningPrizesPerRank(winningPrizes);
+	}
+
+	private static void printMatchCount(LottoPrize lottoPrize) {
+		String message = MESSAGE_MATCH_COUNT_OF_PRIZE;
+		if (lottoPrize.isSecond()) {
+			message = MESSAGE_MATCH_COUNT_OF_SECOND_PRIZE;
+		}
+		System.out.printf(message, lottoPrize.matchCount());
+	}
+
+	private static void printPrizeMoney(LottoPrize lottoPrize) {
+		System.out.printf(MESSAGE_PRIZE_MONEY_OF_PRIZE, lottoPrize.prizeMoney());
+	}
+
+	private static void printWinningPrizesPerRank(LottoPrizes winningPrizes) {
+		System.out.printf(MESSAGE_COUNT_OF_PRIZES_PER_RANK, winningPrizes.size());
+	}
+
 	public static void showEarningsRate(double earningsRate) {
 		System.out.printf(MESSAGE_TOTAL_EARNINGS_RATE, String.format(DECIMAL_POINT, earningsRate));
 		if (earningsRate < BASE_EARNINGS_RATE) {
@@ -51,27 +73,5 @@ public class ResultView {
 			return;
 		}
 		System.out.print(MESSAGE_PROFIT);
-	}
-
-	private static void printLottoPrizePerRank(LottoPrizes winningPrizes, LottoPrize lottoPrize) {
-		printMatchCount(lottoPrize);
-		printPrizeMoney(lottoPrize);
-		printWinningPrizesPerRank(winningPrizes);
-	}
-
-	private static void printWinningPrizesPerRank(LottoPrizes winningPrizes) {
-		System.out.printf(MESSAGE_COUNT_OF_PRIZES_PER_RANK, winningPrizes.size());
-	}
-
-	private static void printPrizeMoney(LottoPrize lottoPrize) {
-		System.out.printf(MESSAGE_PRIZE_MONEY_OF_PRIZE, lottoPrize.prizeMoney());
-	}
-
-	private static void printMatchCount(LottoPrize lottoPrize) {
-		String message = MESSAGE_MATCH_COUNT_OF_PRIZE;
-		if (lottoPrize == LottoPrize.SECOND) {
-			message = MESSAGE_MATCH_COUNT_OF_SECOND_PRIZE;
-		}
-		System.out.printf(message, lottoPrize.matchCount());
 	}
 }

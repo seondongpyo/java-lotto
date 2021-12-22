@@ -25,7 +25,7 @@ public enum LottoPrize {
 									.findFirst()
 									.orElse(LottoPrize.NONE);
 
-		if (lottoPrize == SECOND && !hasBonusNumber) {
+		if (lottoPrize.isSecond() && !hasBonusNumber) {
 			return THIRD;
 		}
 		return lottoPrize;
@@ -41,5 +41,9 @@ public enum LottoPrize {
 
 	public boolean isNone() {
 		return this == NONE;
+	}
+
+	public boolean isSecond() {
+		return this == SECOND;
 	}
 }

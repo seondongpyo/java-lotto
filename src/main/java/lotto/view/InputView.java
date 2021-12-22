@@ -50,15 +50,15 @@ public class InputView {
 		return LottoNumbers.from(numbers);
 	}
 
+	private static List<Integer> lottoNumbersFromUser() {
+		return IntStream.range(INITIAL_INDEX, COUNT_OF_LOTTO_NUMBERS)
+			.mapToObj(index -> Integer.parseInt(SCANNER.next().replace(DELIMITER, BLANK)))
+			.collect(collectingAndThen(toList(), Collections::unmodifiableList));
+	}
+
 	public static int inputBonusNumber() {
 		System.out.printf(INPUT_BONUS_NUMBER);
 		return SCANNER.nextInt();
-	}
-
-	private static List<Integer> lottoNumbersFromUser() {
-		return IntStream.range(INITIAL_INDEX, COUNT_OF_LOTTO_NUMBERS)
-				.mapToObj(index -> Integer.parseInt(SCANNER.next().replace(DELIMITER, BLANK)))
-				.collect(collectingAndThen(toList(), Collections::unmodifiableList));
 	}
 
 }

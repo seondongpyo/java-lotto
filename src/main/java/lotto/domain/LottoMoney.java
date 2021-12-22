@@ -15,14 +15,6 @@ public class LottoMoney {
 		this.amount = amount;
 	}
 
-	public int availableLottoTicketsCount() {
-		return amount / PRICE_PER_LOTTO_TICKET;
-	}
-
-	public double earningsRate(int totalPrizeMoney) {
-		return (double) totalPrizeMoney / amount;
-	}
-
 	private void validateMoneyAmount(int amount) {
 		if (isInsufficientForBuyingLottoTicket(amount)) {
 			throw new InsufficientMoneyException(amount);
@@ -31,6 +23,14 @@ public class LottoMoney {
 
 	private boolean isInsufficientForBuyingLottoTicket(int amount) {
 		return amount < PRICE_PER_LOTTO_TICKET;
+	}
+
+	public int availableLottoTicketsCount() {
+		return amount / PRICE_PER_LOTTO_TICKET;
+	}
+
+	public double earningsRate(int totalPrizeMoney) {
+		return (double) totalPrizeMoney / amount;
 	}
 
 	@Override
